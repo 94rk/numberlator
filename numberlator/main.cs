@@ -36,30 +36,29 @@
                 {
                     default: break;
 
-                    case "decimal":
-                        if (outType == "binary")
+                    case "d":
+                        if (outType == "b")
                         {
                             output = Binary.DecToBin(input);
                         }
-                        else if (outType == "decimal")
+                        else if (outType == "d")
                         {
                             output = input.ToString();
                         }
 
                         break;
 
-                    case "binary":
-                        Console.WriteLine("Not implemented");
-
-                        break;
-                        if (outType == "binary")
+                    case "b":
+                        if (outType == "b")
                         {
                             output = input.ToString();
                         }
-                        else if (outType == "decimal")
+                        else if (outType == "d")
                         {
                             output = Binary.BinToDec(input.ToString());
                         }
+
+                        break;
                 }
 
                 Console.WriteLine(output + "\n");

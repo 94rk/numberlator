@@ -37,10 +37,20 @@ namespace numberlator
 
         public static string BinToDec(string input)
         {
-            string result = "";
-            int nearestPow2 = (int)Math.Pow(2, Math.Ceiling(Math.Log2(Math.Max(input, 4))));
+            string reversed = new string(input.Reverse().ToArray());
+            int result = 0;
 
-            return nearestPow2.ToString();
+            for (int i = 0; i < reversed.Length; i++)
+            {
+                char bit = reversed[i];
+
+                if (bit == '1')
+                    result += (int)Math.Pow(2, i);
+                else if (bit != '0')
+                    throw new ArgumentException("Invalid character in binary string");
+            }
+
+            return result.ToString();
         }
     }
 }
