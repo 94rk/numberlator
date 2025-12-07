@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        // types: decimal, binary
+        // types: decimal, binary, hex
 
         static void Main(string[] args)
         {
@@ -13,10 +13,10 @@
                 string inType = "none";
                 string outType = "none";
 
-                int input = 0;
+                string input = "";
                 string output = "";
 
-                Console.WriteLine("Valid types (can use first letter only): decimal, binary \n");
+                Console.WriteLine("Valid types: decimal (d), binary (b), hexadecimal (hex, h) \n");
 
                 Console.Write("Enter the input type: ");
                 inType = Console.ReadLine() ?? "none";
@@ -27,8 +27,8 @@
                 Console.WriteLine();
 
                 Console.Write("Enter the input number: ");
-                float.TryParse(Console.ReadLine(), out float f);
-                input = (int)Math.Floor(f);
+                input = Console.ReadLine() ?? "";
+                input = input.ToLower();
 
                 Console.WriteLine();
 
@@ -40,26 +40,52 @@
 
                     case "decimal": // fallthrough, to not cnp all the code from the case
                     case "d":
-                        if (outType == "b")
+                        if (outType == "b" || outType == "binary")
                         {
-                            output = Binary.DecToBin(input);
+                            output = Binary.DecToBin(Convert.ToInt32(input));
                         }
-                        else if (outType == "d")
+                        else if (outType == "d" || outType == "decimal")
                         {
                             output = input.ToString();
+                        }
+                        else if (outType == "h" || outType == "hex" || outType == "hexadecimal")
+                        {
+                            output = Hex.DecToHex(input.ToString());
                         }
 
                         break;
 
-                    case "binary": // same here
+                    case "binary":
                     case "b":
-                        if (outType == "b")
+                        if (outType == "b" || outType == "binary")
                         {
-                            output = input.ToString();
+                            output = input;
                         }
-                        else if (outType == "d")
+                        else if (outType == "d" || outType == "decimal")
                         {
-                            output = Binary.BinToDec(input.ToString());
+                            output = Binary.BinToDec(input);
+                        }
+                        else if (outType == "h" || outType == "hex" || outType == "hexadecimal")
+                        {
+                            output = Hex.BinToHex(input);
+                        }
+
+                        break;
+
+                    case "hexadecimal":
+                    case "hex":
+                    case "h":
+                        if (outType == "b" || outType == "binary")
+                        {
+                            output = Hex.HexToBin(input);
+                        }
+                        else if (outType == "d" || outType == "decimal")
+                        {
+                            output = Hex.HexToDec(input);
+                        }
+                        else if (outType == "h" || outType == "hex" || outType == "hexadecimal")
+                        {
+                            output = input;
                         }
 
                         break;
