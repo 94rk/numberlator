@@ -16,7 +16,7 @@
                 int input = 0;
                 string output = "";
 
-                Console.WriteLine("Valid types: decimal, binary \n");
+                Console.WriteLine("Valid types (can use first letter only): decimal, binary \n");
 
                 Console.Write("Enter the input type: ");
                 inType = Console.ReadLine() ?? "none";
@@ -34,8 +34,11 @@
 
                 switch (inType)
                 {
-                    default: break;
+                    default:
+                        output = "Error: no valid option provided";
+                        break;
 
+                    case "decimal": // fallthrough, to not cnp all the code from the case
                     case "d":
                         if (outType == "b")
                         {
@@ -48,6 +51,7 @@
 
                         break;
 
+                    case "binary": // same here
                     case "b":
                         if (outType == "b")
                         {
