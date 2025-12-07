@@ -1,6 +1,6 @@
 ﻿namespace numberlator
 {
-    internal class main
+    internal class Program
     {
         // types: decimal, binary
 
